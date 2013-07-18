@@ -1,0 +1,98 @@
+*sprunge.txt*   Vim global plugin to paste to http://sprunge.us/
+
+==============================================================================
+CONTENTS                                                    *Sprunge-contents*
+
+    1. Intro ........................... |SprungeIntroIntro|
+    2. Usage ........................... |SprungeUsage|
+    3. Configuration ................... |SprungeConfig|
+    4. License ......................... |SprungeLicense|
+    5. Bugs ............................ |SprungeBugs|
+    6. Contributing .................... |SprungeContributing|
+    7. Changelog ....................... |SprungeChangelog|
+    8. Credits ......................... |SprungeCredits|
+
+==============================================================================
+1. Intro                                                          *SprungeIntro*
+
+There are several pastebin sites avalaible on the Internet, and there exist
+even a plugin for Gist: https://github.com/mattn/gist-vim
+
+So why yet another pastebin plugin?, well, tell me 1 site who allow you fetch
+the content sanetely?, most of them ask you to open a browser and click here
+and there to get the juice.
+
+http://sprunge.us/ doesn't not!, if you're confident in a terminal, try this:
+
+  $ ls | curl -F 'sprunge=<-' http://sprunge.us
+
+Curius for your output?, try now this:
+
+  $ curl <url-sprunge-generated>
+
+Yep, reasonable simple!?, now, suppose you're working on a script, you want
+to test it in a pristine env, maybe ec2 or vagrant..
+
+  $ cat script | curl -F 'sprunge=<-' http://sprunge.us
+
+And then from the pristine environment:
+
+  $ bash <(wget -qO- <url-sprunge-generated>)
+
+Cool!?, eh?, now, wouldn't it be cool if you could paste directly from vim?
+
+==============================================================================
+2. Usage                                                        *SprungeUsage*
+
+If you by now love http://sprunge.us/, you can start using it now, type:
+
+    :Sprunge
+
+And press <Enter>, you'll get a url with the content of your file. You can
+add a map if you find yourself typing ':Sprunge' too often:
+
+    nnoremap <F11> :GundoToggle<CR>
+
+Use <leader> or your favorite shortcut, wondering how can you upload specific
+parts of your file?, go to |SprungeContributing|.
+
+==============================================================================
+3. Configuration                                               *SprungeConfig*
+
+No configuration settings yet
+
+==============================================================================
+4. License                                                    *SprungeLicense*
+
+WTFPL – Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
+
+==============================================================================
+5. Bugs                                                          *SprungeBugs*
+
+If you find a bug please post it on the issue tracker:
+
+    https://github.com/chilicuil/vim-sprunge/issues
+
+==============================================================================
+6. Contributing                                          *SprungeContributing*
+
+I created this plugin while waiting for a meeting, it does what I need, if you
+need something else the best way to get it is to send a patch, fork it and send
+your pull request =)
+
+GitHub: http://github.com/chilicuil/sprunge-vim/
+
+==============================================================================
+7. Changelog                                                *SprungeChangelog*
+
+v0.0.1
+    * Initial release.
+
+==============================================================================
+8. Credits                                                    *SprungeCredits*
+
+The plugin was heavily inspired by gundo.vim:
+
+    https://github.com/sjl/gundo.vim
+
+==============================================================================
