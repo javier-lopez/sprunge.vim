@@ -1,4 +1,4 @@
-Sprunge.vim is Vim plugin to post to [Sprunge!](http://sprunge.us/)
+Sprunge.vim is a Vim plugin who helps posting to [Sprunge!](http://sprunge.us/)
 
 Preview
 -------
@@ -39,7 +39,7 @@ Usage
 
 Add a mapping to your ~/.vimrc (change the key to suit your taste):
 
-nnoremap <F11> :Sprunge<CR>
+    nnoremap <F11> :Sprunge<CR>
 
 License
 -------
