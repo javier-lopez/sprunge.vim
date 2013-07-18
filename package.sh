@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-zip sprunge.zip autoload/ doc/ plugin/ README.markdow
+zip -r vim-sprunge.zip autoload/ doc/ plugin/ README.markdown

@@ -1,13 +1,13 @@
-Sprunge.vim is a Vim plugin who helps posting to [Sprunge!](http://sprunge.us/)
+Sprunge.vim is a global plugin to post to [Sprunge](http://sprunge.us/)
 
 Preview
 -------
 
-Screenshot:
+Screenshots:
 
-<img src="http://javier.io/assets/img/vim-sprunge-1.jpg"  alt="sprunge" />
-<img src="http://javier.io/assets/img/vim-sprunge-2.jpg"  alt="sprunge" />
-<img src="http://javier.io/assets/img/vim-sprunge-3.jpg"  alt="sprunge" />
+<img src="http://javier.io/assets/img/vim-sprunge-1.jpg"/>
+<img src="http://javier.io/assets/img/vim-sprunge-2.jpg"/>
+<img src="http://javier.io/assets/img/vim-sprunge-3.jpg"/>
 
 Requirements
 ------------
@@ -18,11 +18,11 @@ Requirements
 Installation
 ------------
 
-Pathogen:
+*Pathogen*:
 
-git clone https://github.com/chilicuil/vim-sprunge.git ~/.vim/bundle/sprunge
+    $ git clone https://github.com/chilicuil/vim-sprunge.git ~/.vim/bundle/sprunge
 
-Vundle, add the following to your $HOME/.vimrc file:
+*Vundle*, add the following to your $HOME/.vimrc file:
 
     Bundle 'chilicuil/vim-sprunge'
 
@@ -30,14 +30,19 @@ And run inside of vim:
 
     :BundleInstall
 
-Vim.org:
+*Manual*, download the zip file from http://www.vim.org/scripts/script.php?script_id=4662 and extract it to $HOME/.vim
 
-    Instructions here
+    mv vim-sprunge*.zip $HOME/.vim
+    cd $HOME/.vim && unzip vim-sprunge*.zip
+
+Update the help tags from vim:
+
+    :helpt ~/.vim/doc/
 
 Usage
 -----
 
-Add a mapping to your ~/.vimrc (change the key to suit your taste):
+Add a mapping to your ~/.vimrc (change the key to suit your needs):
 
     nnoremap <F11> :Sprunge<CR>
 
