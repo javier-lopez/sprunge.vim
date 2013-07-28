@@ -12,3 +12,10 @@ function! sprunge#SprungePost()"{{{
     let l:loc = system('curl -s -F "sprunge=<-" http://sprunge.us < ' . expand('%:p'))[0:-2]
     redraw | echomsg 'Done: '.l:loc
 endfunction"}}}
+
+function! sprunge#SprungePostBuffer(line1, line2)"{{{
+    let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
+    redraw | echon 'Posting it to sprunge ... '
+    let l:loc = system('curl -s -F "sprunge=<-" http://sprunge.us', buffer)[0:-2]
+    redraw | echomsg 'Done: '.l:loc
+endfunction"}}}

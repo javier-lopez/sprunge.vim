@@ -27,4 +27,5 @@ endif
 
 "{{{ Misc
 command! -nargs=0 Sprunge call sprunge#SprungePost()
+command! -nargs=0 -range=% SprungeBuffer call sprunge#SprungePostBuffer(<line1>,<line2>)
 "}}}
