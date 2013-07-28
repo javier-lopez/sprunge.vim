@@ -7,23 +7,17 @@
 "
 " ============================================================================
 
-"{{{ Init
-
-if v:version < '700'"{{{
-    echohl WarningMsg|echomsg "Sprunge unavailable: requires Vim 7.0+"|echohl None
-    finish
-endif"}}}
-
-"}}}
+let s:sprunge = 'curl -s -F "sprunge=<-" http://sprunge.us'
 
 function! sprunge#SprungePost()"{{{
-    if !has('unix') || !executable('curl')
-        echohl WarningMsg| echo "Sprunge: require 'curl' command" |echohl None
-        return
-    endif
     redraw | echon 'Posting it to sprunge ... '
-    let l:loc = substitute(system("cat " . expand("%:p") . " |  curl -s -F '\''sprunge=<-'\'' http://sprunge.us"), "\n", '', '')
+    let l:loc = system(s:sprunge . '<' . expand('%:p'))[0:-2]
     redraw | echomsg 'Done: '.l:loc
 endfunction"}}}
 
-"}}}
+function! sprunge#SprungePostBuffer(line1, line2)"{{{
+    let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
+    redraw | echon 'Posting it to sprunge ... '
+    let l:loc = system(s:sprunge, buffer)[0:-2]
+    redraw | echomsg 'Done: '.l:loc
+endfunction"}}}
