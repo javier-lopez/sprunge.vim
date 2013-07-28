@@ -9,10 +9,20 @@
 
 
 "{{{ Init
-if (exists('g:sprunge_disable') || exists('loaded_sprunge') || &cp)"{{{
+if (exists('g:sprunge_disable') || exists('loaded_sprunge') || &cp)
     finish
 endif
-let loaded_sprunge = 1"}}}
+let loaded_sprunge = 1
+
+if v:version < '700'
+    echoerr "Sprunge unavailable: requires Vim 7.0+"
+    finish
+endif
+
+if !has('unix') || !executable('curl')
+    echoerr "Sprunge: requires 'curl' command"
+    finish
+endif
 "}}}
 
 "{{{ Misc
