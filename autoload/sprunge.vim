@@ -22,7 +22,7 @@ function! sprunge#SprungePost()"{{{
         return
     endif
     redraw | echon 'Posting it to sprunge ... '
-    let l:loc = substitute(system("cat " . expand("%:p") . " |  curl -s -F '\''sprunge=<-'\'' http://sprunge.us"), "\n", '', '')
+    let l:loc = system("cat " . expand("%:p") . " |  curl -s -F '\''sprunge=<-'\'' http://sprunge.us")[0:-2]
     redraw | echomsg 'Done: '.l:loc
 endfunction"}}}
 
