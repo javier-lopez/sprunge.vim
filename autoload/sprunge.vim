@@ -10,7 +10,7 @@
 "{{{ Init
 
 if v:version < '700'"{{{
-    echohl WarningMsg|echomsg "Sprunge unavailable: requires Vim 7.0+"|echohl None
+    echoerr "Sprunge unavailable: requires Vim 7.0+"
     finish
 endif"}}}
 
@@ -18,7 +18,7 @@ endif"}}}
 
 function! sprunge#SprungePost()"{{{
     if !has('unix') || !executable('curl')
-        echohl WarningMsg| echo "Sprunge: require 'curl' command" |echohl None
+        echoerr "Sprunge: require 'curl' command"
         return
     endif
     redraw | echon 'Posting it to sprunge ... '
