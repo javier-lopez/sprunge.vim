@@ -49,4 +49,4 @@ Add a mapping to your ~/.vimrc (change the key to suit your needs):
 License
 -------
 
-© 2013 WTFPL – Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
+© 2013 WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/

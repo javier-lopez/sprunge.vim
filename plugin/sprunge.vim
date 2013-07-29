@@ -4,9 +4,7 @@
 " Maintainer:  Javier Lopez <m@javier.io>
 " License:     WTFPL -- look it up.
 " Notes:       Much of this code was thiefed from gundo.vim
-"
 " ============================================================================
-
 
 "{{{ Init
 if (exists('g:sprunge_disable') || exists('loaded_sprunge') || &cp)
@@ -26,6 +24,5 @@ endif
 "}}}
 
 "{{{ Misc
-command! -nargs=0 Sprunge call sprunge#SprungePost()
-command! -nargs=0 -range=% SprungeBuffer call sprunge#SprungePostBuffer(<line1>,<line2>)
+command! -nargs=0 -range=% Sprunge call sprunge#SprungePostBuffer(<line1>,<line2>)
 "}}}

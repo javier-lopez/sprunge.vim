@@ -51,10 +51,10 @@ If you by now love http://sprunge.us/, you can start using it now, type:
 And press <Enter>, you'll get a url with the content of your file. You can
 add a map if you find yourself typing ':Sprunge' too often:
 
-    nnoremap <F11> :GundoToggle<CR>
+    nnoremap <F11> :Sprunge<CR>
 
-Use <leader> or your favorite shortcut, wondering how can you upload specific
-parts of your file?, go to |SprungeContributing|.
+Use <leader> or your favorite shortcut, wondering how make sprunge.us to
+colorize your paste?, go to |SprungeContributing|.
 
 ==============================================================================
 3. Configuration                                               *SprungeConfig*
@@ -64,7 +64,7 @@ No configuration settings yet
 ==============================================================================
 4. License                                                    *SprungeLicense*
 
-WTFPL – Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
+WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
 
 ==============================================================================
 5. Bugs                                                          *SprungeBugs*
@@ -85,6 +85,9 @@ GitHub: http://github.com/chilicuil/sprunge-vim/
 ==============================================================================
 7. Changelog                                                *SprungeChangelog*
 
+v0.0.2
+    * Sprunge now uploads the current buffer instead of a file, most people
+      will prefer this...
 v0.0.1
     * Initial release.
 
@@ -94,5 +97,9 @@ v0.0.1
 The plugin was heavily inspired by gundo.vim:
 
     https://github.com/sjl/gundo.vim
+
+Additional enhancements were made by the following people:
+
+    * Osse, https://github.com/Osse
 
 ==============================================================================
