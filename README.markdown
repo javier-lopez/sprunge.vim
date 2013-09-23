@@ -50,3 +50,7 @@ License
 -------
 
 © 2013 WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/chilicuil/vim-sprunge/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
