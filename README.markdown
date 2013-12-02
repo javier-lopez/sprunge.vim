@@ -3,16 +3,10 @@
 Preview
 -------
 
-Screenshots:
-
 <p align="center">
-<img src="http://javier.io/assets/img/vim-sprunge-1.jpg"/>
-</p>
-<p align="center">
-<img src="http://javier.io/assets/img/vim-sprunge-2.jpg"/>
-</p>
-<p align="center">
-<img src="http://javier.io/assets/img/vim-sprunge-3.jpg"/>
+<img src="http://javier.io/assets/img/vim-sprunge-1.jpg"/><br>
+<img src="http://javier.io/assets/img/vim-sprunge-2.jpg"/><br>
+<img src="http://javier.io/assets/img/vim-sprunge-3.jpg"/><br>
 </p>
 
 Requirements
