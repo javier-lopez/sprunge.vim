@@ -6,7 +6,7 @@
 " Notes:       Much of this code was thiefed from gundo.vim
 " ============================================================================
 
-let s:sprunge = 'curl -s -F "sprunge=<-" http://sprunge.us'
+let s:sprunge = 'curl -s -F "sprunge=<-" http://sprunge.us | xclip -selection clipboard; xclip -o -selection clipboard'
 
 function! sprunge#SprungePostBuffer(line1, line2)"{{{
     let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
