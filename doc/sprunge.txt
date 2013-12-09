@@ -64,7 +64,7 @@ none:     sprunge url will only be shown in the status line
 vim:      sprunge url will only be copied to the integrated vim clipboard
           (unnamed register, ")
 external: sprunge url will only be copied to external clipboard utilities
-          (currently xclip)
+          (currently xclip,pbcopy)
 all:      sprunge url will be copied to all possible clipboards
 
 ==============================================================================

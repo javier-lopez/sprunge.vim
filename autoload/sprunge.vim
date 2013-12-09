@@ -27,9 +27,9 @@ function! sprunge#SprungeCopyClipboard(_loc)"{{{
         if executable('xclip')
             call system('printf "' .  a:_loc . '"' . ' | ' .
             \ 'xclip -selection clipboard; xclip -o -selection clipboard')
-        "else executable ('pbcopy')
-            "call system('printf "' .  a:_loc . '"' . ' | ' .
-            "\ 'pbcopy command')
+        elseif executable ('pbcopy')
+            call system('printf "' .  a:_loc . '"' . ' | ' .
+            \ 'pbcopy')
         endif
     endif
 endfunction"}}}
