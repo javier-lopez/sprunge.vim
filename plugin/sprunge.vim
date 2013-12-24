@@ -17,8 +17,8 @@ if v:version < '700'
     finish
 endif
 
-if !has('unix') || !executable('curl')
-    echoerr "Sprunge: requires 'curl' command"
+if !executable('curl')
+    echoerr "Sprunge: requires 'curl'"
     finish
 endif
 "}}}
