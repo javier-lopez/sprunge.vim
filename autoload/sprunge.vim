@@ -21,11 +21,8 @@ endif
 
 function! sprunge#SprungeCopyClipboard(_loc)"{{{
     if s:clipboard == 'vim' || s:clipboard == 'all'
-        if has("win32") || has("win16")
-            call setreg('*', a:_loc)
-        else
-            call setreg('"', a:_loc)
-        endif
+        call setreg('"', a:_loc)
+    endif
     if s:clipboard == 'external' || s:clipboard == 'all'
         if executable('xclip')
             call system('printf "' .  a:_loc . '"' . ' | ' .
@@ -33,6 +30,9 @@ function! sprunge#SprungeCopyClipboard(_loc)"{{{
         elseif executable ('pbcopy')
             call system('printf "' .  a:_loc . '"' . ' | ' .
             \ 'pbcopy')
+        endif
+        if has("win32") || has("win16")
+            call setreg('*', a:_loc)
         endif
     endif
 endfunction"}}}
