@@ -121,7 +121,8 @@ The plugin was heavily inspired by gundo.vim:
 
 Additional enhancements were made by the following people:
 
-    * Osse, https://github.com/Osse
+    * Dhruva,   https://github.com/dhruvasagar
+    * Osse,     https://github.com/Osse
     * Greenify, https://github.com/greenify
 
 ==============================================================================
