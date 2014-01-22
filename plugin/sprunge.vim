@@ -38,7 +38,7 @@ if !exists('g:sprunge_map')
 endif
 
 " Commands & Mappings {{{1
-command! -nargs=0 -range=% Sprunge :<line1>,<line2>call sprunge#Post()
+command! -nargs=0 -range=% Sprunge call sprunge#Post(<line1>,<line2>)
 
 exe "nnoremap <silent>" g:sprunge_map ":Sprunge<CR>"
 exe "xnoremap <silent>" g:sprunge_map ":Sprunge<CR>"

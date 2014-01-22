@@ -37,8 +37,8 @@ function! sprunge#OpenBrowser(url) "{{{1
   redraw!
 endfunction
 
-function! sprunge#Post() range "{{{
-  let buffer = join(getline(a:firstline, a:lastline), "\n") . "\n"
+function! sprunge#Post(line1, line2)  "{{{
+  let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
   redraw | echon 'Posting to sprunge ... '
   let l:url = system(s:sprunge_cmd, buffer)[0:-2]
   call sprunge#CopyToClipboard(l:url)
