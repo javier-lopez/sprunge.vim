@@ -67,7 +67,7 @@ g:sprunge_clipboard                                    *SprungeConfig-clipboard*
 g:sprunge_open_browser                             *SprungeConfig-open-browser*
     Use this option to enable opening the sprunge link in your default
     browser. >
-        let g:sprunge_open_browser = 1
+        let g:sprunge_open_browser = 0
 <
 
 g:sprunge_map                                              *SprungeConfig-map*
