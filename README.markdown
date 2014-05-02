@@ -4,9 +4,7 @@ Preview
 -------
 
 <p align="center">
-  <img src="http://javier.io/assets/img/vim-sprunge-1.jpg"/><br>
-  <img src="http://javier.io/assets/img/vim-sprunge-2.jpg"/><br>
-  <img src="http://javier.io/assets/img/vim-sprunge-3.jpg"/><br>
+  <img src="http://javier.io/assets/img/vim-sprunge.gif"/><br>
 </p>
 
 Requirements
