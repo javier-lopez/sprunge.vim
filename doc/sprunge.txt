@@ -71,8 +71,12 @@ g:sprunge_open_browser                             *SprungeConfig-open-browser*
 <
 
 g:sprunge_map                                              *SprungeConfig-map*
-    Use this option to configure the mapping you can use to sprunge. >
+    Use this option to configure the mapping assigned to sprunge. >
         let g:sprunge_map = '<Leader>s'
+<
+
+    Alternatively the mapping can be assigned directly to the <Plug> action >
+        map <Leader>s <Plug>Sprunge
 <
     NOTE: The mapping is available in normal mode to sprunge the entire buffer
     and visual mode to sprunge only the visual selection.
