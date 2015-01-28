@@ -41,7 +41,16 @@ function! sprunge#Post(line1, line2)  "{{{
   let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
   redraw | echon 'Posting to sprunge ... '
   let l:url = system(s:sprunge_cmd, buffer)[0:-2]
-  call sprunge#CopyToClipboard(l:url)
-  if g:sprunge_open_browser | call sprunge#OpenBrowser(l:url . '?' . &filetype) | endif
-  redraw | echomsg 'Done: ' . l:url
+  if empty(l:url)
+      let l:url = system("curl -s http://google.com")
+      if empty(l:url)
+          redraw | echohl WarningMsg|echomsg 'Error: no network available' |echohl None
+      else
+          redraw | echohl WarningMsg|echomsg 'Error: sprunge.us has been shutdown or altered its api' |echohl None
+      endif
+  else
+      call sprunge#CopyToClipboard(l:url)
+      if g:sprunge_open_browser | call sprunge#OpenBrowser(l:url . '?' . &filetype) | endif
+      redraw | echomsg 'Done: ' . l:url
+  endif
 endfunction

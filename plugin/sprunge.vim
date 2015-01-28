@@ -36,8 +36,15 @@ if !exists('g:sprunge_map') | let g:sprunge_map = '<Leader>s' | endif
 command! -nargs=0 -range=% Sprunge call sprunge#Post(<line1>,<line2>)
 
 if !hasmapto('<Plug>Sprunge')
-    exe "nmap <unique> "  . g:sprunge_map . " <Plug>Sprunge"
-    exe "xmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
+    try
+        exe "nmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
+        exe "xmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
+    catch /^Vim(.*):E227:/
+        if(&verbose != 0)
+            echohl WarningMsg|echomsg 'Error: sprunge default mapping: ' . g:sprunge_map \
+            . 'is already taken, refusing to overwrite it. See :h SprungeConfig-map' |echohl None
+        endif
+    endtry
 endif
 
 nnoremap <unique> <script> <Plug>Sprunge :Sprunge<CR>
