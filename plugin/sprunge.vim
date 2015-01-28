@@ -36,7 +36,7 @@ if !exists('g:sprunge_map') | let g:sprunge_map = '<Leader>s' | endif
 command! -nargs=0 -range=% Sprunge call sprunge#Post(<line1>,<line2>)
 
 if !hasmapto('<Plug>Sprunge')
-    exe "map <unique> "  . g:sprunge_map . " <Plug>Sprunge"
+    exe "nmap <unique> "  . g:sprunge_map . " <Plug>Sprunge"
     exe "xmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
 endif
 
