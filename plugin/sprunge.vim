@@ -41,8 +41,8 @@ if !hasmapto('<Plug>Sprunge')
         exe "xmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
     catch /^Vim(.*):E227:/
         if(&verbose != 0)
-            echohl WarningMsg|echomsg 'Error: sprunge default mapping: ' . g:sprunge_map \
-            . 'is already taken, refusing to overwrite it. See :h SprungeConfig-map' |echohl None
+            echohl WarningMsg|echomsg 'Error: sprunge default mapping: ' . g:sprunge_map
+            \ . 'is already taken, refusing to overwrite it. See :h SprungeConfig-map' |echohl None
         endif
     endtry
 endif
