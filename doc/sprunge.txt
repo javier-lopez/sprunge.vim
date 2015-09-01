@@ -52,7 +52,7 @@ CONFIGURATION                                                   *SprungeConfig*
 These options should be set in your .vimrc file.
 
 g:sprunge_clipboard                                    *SprungeConfig-clipboard*
-    Use this option to define which clipboard to use
+    Default clipboard
 
     Acceptable Values: "none", "vim", "external", "all". >
         let g:sprunge_clipboard = 'all'
@@ -61,8 +61,15 @@ g:sprunge_clipboard                                    *SprungeConfig-clipboard*
     vim:      sprunge url will only be copied to the integrated vim clipboard
               (unnamed register, ")
     external: sprunge url will only be copied to external clipboard utilities
-              (currently xclip,pbcopy)
+              (currently xclip, xsel, pbcopy)
     all:      sprunge url will be copied to all possible clipboards
+
+g:sprunge_clipboard_cmd                            *SprungeConfig-clipboard-cmd*
+    User defined clipboard
+
+    Use this option to configure any other third party clipboard application >
+        let g:sprunge_clipboard_cmd = 'clipboard_app --option'
+<
 
 g:sprunge_open_browser                             *SprungeConfig-open-browser*
     Use this option to enable opening the sprunge link in your default
@@ -71,7 +78,7 @@ g:sprunge_open_browser                             *SprungeConfig-open-browser*
 <
 
 g:sprunge_map                                              *SprungeConfig-map*
-    Use this option to configure the mapping assigned to sprunge. >
+    Use this option to configure the default mapping >
         let g:sprunge_map = '<Leader>s'
 <
 
@@ -104,6 +111,9 @@ GitHub: http://github.com/chilicuil/sprunge-vim/
 ==============================================================================
 CHANGELOG                                                    *SprungeChangelog*
 
+v0.0.5
+    * Add xsel to the default clipboard app list
+    * Add g:sprunge_clipboard_cmd
 v0.0.4
     * Refactored the code & API
     * Added support to open link in browser, enabled by g:sprunge_open_browser

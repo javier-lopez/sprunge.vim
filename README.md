@@ -48,13 +48,12 @@ Installation
 Usage
 -----
 
-:Sprunge to sprunge code to sprunge.us, you may use it in visual mode to
-sprunge only the selection.
+:Sprunge (or <kbd>\<Leader\>s</kbd>) to sprunge code to sprunge.us, you may use
+it in visual mode to sprunge only the selection.
 
-You can also use the provided mapping of <kbd>\<Leader\>s</kbd> in both normal
-mode (sprunge entire buffer) or visual mode (sprunge only the selection)
+See <kbd>:h sprunge.txt</kbd> for more help.
 
 License
 -------
 
-© 2014 WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
+© 2015 WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/

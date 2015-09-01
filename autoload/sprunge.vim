@@ -16,6 +16,8 @@ function! sprunge#CopyToClipboard(clip) "{{{
     if executable('xclip')
       call system('printf "' .  a:clip . '"' . ' | ' .
             \ 'xclip -selection clipboard; xclip -o -selection clipboard')
+    elseif executable ('xsel')
+      call system('printf "' .  a:clip . '"' . ' | ' .  'xsel -bi')
     elseif executable ('pbcopy')
       call system('printf "' .  a:clip . '"' . ' | ' .
             \ 'pbcopy')
@@ -23,6 +25,10 @@ function! sprunge#CopyToClipboard(clip) "{{{
     if has("win32") || has("win16")
       call setreg('*', a:clip)
     endif
+  endif
+
+  if exists('g:sprunge_clipboard_cmd')
+      call system('printf "' .  a:clip . '"' . ' | ' .  g:sprunge_clipboard_cmd)
   endif
 endfunction
 
