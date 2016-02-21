@@ -2,7 +2,7 @@
 " File:        sprunge.vim
 " Description: vim global plugin to paste to http://sprunge.us/
 " Maintainer:  Javier Lopez <m@javier.io>
-" License:     WTFPL -- look it up.
+" License:     WTFPL
 " Notes:       Much of this code was thiefed from gundo.vim
 " ============================================================================
 
@@ -17,9 +17,8 @@ if v:version < '700'
   finish
 endif
 
-if !executable('curl')
-  echoerr "Sprunge: requires 'curl'"
-  finish
+if executable('curl') && !exists('g:sprunge_cmd')
+    let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
 endif
 
 " Default configuration {{{1

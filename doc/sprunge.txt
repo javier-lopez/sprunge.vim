@@ -15,22 +15,20 @@ CONTENTS                                                     *Sprunge-contents*
 ==============================================================================
 INTRO                                                            *SprungeIntro*
 
-There are several pastebin sites avalaible on the Internet, and there exist
-even a plugin for Gist: https://github.com/mattn/gist-vim. So why yet another
-pastebin plugin?, well, tell me 1 site who allow you fetch the content
-sanetely?, most of them ask you to open a browser and click here and there to
-get the juice.
+There are several pastebin sites on Internet, and there exist even a vim
+plugin for Gist: https://github.com/mattn/gist-vim. So why yet another
+pastebin plugin?, well, all previous vim plugins uses providers who require to
+open a browser to fetch the content, not cool.
 
-http://sprunge.us/ doesn't not!, if you're confident in a terminal, try this:
+http://sprunge.us/ does not!, try this:
 
   $ ls | curl -F 'sprunge=<-' http://sprunge.us
 
-Curius for your output?, try now this:
+now this:
 
   $ curl <url-sprunge-generated>
 
-Cool!?, eh?, now, wouldn't it be even more cool if you could paste directly
-from vim?
+Simple!
 
 ==============================================================================
 USAGE                                                           *SprungeUsage*
@@ -51,6 +49,13 @@ CONFIGURATION                                                   *SprungeConfig*
 
 These options should be set in your .vimrc file.
 
+g:sprunge_cmd                                                *SprungeConfig-cmd*
+    User defined sprunge command
+
+    Use this option to customize the sprunge command >
+        let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
+<
+
 g:sprunge_clipboard                                    *SprungeConfig-clipboard*
     Default clipboard
 
@@ -63,6 +68,7 @@ g:sprunge_clipboard                                    *SprungeConfig-clipboard*
     external: sprunge url will only be copied to external clipboard utilities
               (currently xclip, xsel, pbcopy)
     all:      sprunge url will be copied to all possible clipboards
+
 
 g:sprunge_clipboard_cmd                            *SprungeConfig-clipboard-cmd*
     User defined clipboard
@@ -113,6 +119,7 @@ CHANGELOG                                                    *SprungeChangelog*
 
 v0.0.5
     * Add xsel to the default clipboard app list
+    * Add g:sprunge_cmd
     * Add g:sprunge_clipboard_cmd
 v0.0.4
     * Refactored the code & API
