@@ -15,16 +15,17 @@ CONTENTS                                                     *Sprunge-contents*
 ==============================================================================
 INTRO                                                            *SprungeIntro*
 
-There are several pastebin sites on Internet, and there exist even a vim
-plugin for Gist: https://github.com/mattn/gist-vim. So why yet another
-pastebin plugin?, well, all previous vim plugins uses providers who require to
-open a browser to fetch the content, not cool.
+Sprunge.us is a suckless pastebin service, unless others you're able to
+upload|retrieve content without a web browser.
 
-http://sprunge.us/ does not!, try this:
+Quickstart
+----------
+
+Upload
 
   $ ls | curl -F 'sprunge=<-' http://sprunge.us
 
-now this:
+Retrieve
 
   $ curl <url-sprunge-generated>
 
@@ -38,8 +39,8 @@ USAGE                                                           *SprungeUsage*
 After pressing <Enter>, you'll get a url with the content of your file. You
 can also invoke this in visual mode to sprunge only the visual selection.
 
-Alternatively you may also use the '<Leader>s' mapping, you can override this
-mapping by setting 'g:sprunge_map' in your .vimrc
+Alternatively you may also use the '<Leader>s' mapping, or any other by
+setting 'g:sprunge_map' in your .vimrc
 
 Wondering how to make sprunge.us to colorize your paste?, go to
 |SprungeContributing|.
@@ -52,12 +53,14 @@ These options should be set in your .vimrc file.
 g:sprunge_cmd                                                *SprungeConfig-cmd*
     User defined sprunge command
 
-    Use this option to customize the sprunge command >
+    Use this option to customize the sprunge command. >
         let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
 <
 
 g:sprunge_clipboard                                    *SprungeConfig-clipboard*
     Default clipboard
+
+    Use this option to specify the target clipboard. Default to 'all'
 
     Acceptable Values: "none", "vim", "external", "all". >
         let g:sprunge_clipboard = 'all'
@@ -73,21 +76,26 @@ g:sprunge_clipboard                                    *SprungeConfig-clipboard*
 g:sprunge_clipboard_cmd                            *SprungeConfig-clipboard-cmd*
     User defined clipboard
 
-    Use this option to configure any other third party clipboard application >
+    Use this option to configure third party clipboard application. >
         let g:sprunge_clipboard_cmd = 'clipboard_app --option'
 <
 
 g:sprunge_open_browser                             *SprungeConfig-open-browser*
-    Use this option to enable opening the sprunge link in your default
-    browser. >
+    Use this option to open the sprunge link automatically in your default
+    browser. Disabled by default. >
         let g:sprunge_open_browser = 0
+<
+
+g:sprunge_flush_left                                 *SprungeConfig-flush-left*
+    Use this option to aligned along the left margin before pasting. Disabled
+    by default. >
+        let g:sprunge_flush_left = 0
 <
 
 g:sprunge_map                                              *SprungeConfig-map*
     Use this option to configure the default mapping >
         let g:sprunge_map = '<Leader>s'
 <
-
     Alternatively the mapping can be assigned directly to the <Plug> action >
         map <Leader>s <Plug>Sprunge
 <

@@ -3,7 +3,6 @@
 " Description: vim global plugin to paste to http://sprunge.us/
 " Maintainer:  Javier Lopez <m@javier.io>
 " License:     WTFPL
-" Notes:       Much of this code was thiefed from gundo.vim
 " ============================================================================
 
 function! sprunge#CopyToClipboard(clip) "{{{
@@ -24,10 +23,30 @@ function! sprunge#CopyToClipboard(clip) "{{{
       call setreg('*', a:clip)
     endif
   endif
-
   if exists('g:sprunge_clipboard_cmd')
       call system('printf "' .  a:clip . '"' . ' | ' .  g:sprunge_clipboard_cmd)
   endif
+endfunction
+
+function! sprunge#FlushLeft(line1, line2) "{{{1
+  let l:current_line     = a:line1
+  let l:min_white_spaces = 9999
+  while l:current_line <= a:line2
+      if getline(l:current_line) =~# '^$'
+          let l:current_line = l:current_line + 1
+          continue
+      else
+          let l:white_spaces = indent(l:current_line)
+          let l:current_line = l:current_line + 1
+          if l:white_spaces < l:min_white_spaces
+             let l:min_white_spaces = l:white_spaces
+          endif
+      endif
+  endw
+  let l:buffer = '' | for line in getline(a:line1, a:line2)
+      let l:buffer .= strpart(line, l:min_white_spaces) . "\n"
+  endfor
+  return l:buffer
 endfunction
 
 function! sprunge#OpenBrowser(url) "{{{1
@@ -46,7 +65,11 @@ function! sprunge#Post(line1, line2)  "{{{
       echoerr "Sprunge: requires 'curl'"
       return
   endif
-  let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
+  if !exists('g:sprunge_flush_left')
+      let buffer = join(getline(a:line1, a:line2), "\n") . "\n"
+  else
+      let buffer = sprunge#FlushLeft(a:line1, a:line2)
+  endif
   redraw | echon 'Posting to sprunge ... '
   let l:url = system(g:sprunge_cmd, buffer)[0:-2]
   if empty(l:url)
