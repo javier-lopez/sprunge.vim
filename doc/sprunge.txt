@@ -57,6 +57,14 @@ g:sprunge_cmd                                                *SprungeConfig-cmd*
         let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
 <
 
+g:sprunge_providers                                    *SprungeConfig-providers*
+    Default providers
+
+    Use this option to customize the order in which the default providers are
+    called. >
+        let g:sprunge_providers = 'sprunge,ix'
+<
+
 g:sprunge_clipboard                                    *SprungeConfig-clipboard*
     Default clipboard
 
@@ -76,23 +84,29 @@ g:sprunge_clipboard                                    *SprungeConfig-clipboard*
 g:sprunge_clipboard_cmd                            *SprungeConfig-clipboard-cmd*
     User defined clipboard
 
-    Use this option to configure third party clipboard application. >
+    Use this option to configure a third party clipboard application. >
         let g:sprunge_clipboard_cmd = 'clipboard_app --option'
 <
 
 g:sprunge_open_browser                             *SprungeConfig-open-browser*
+    Browser trigger
+
     Use this option to open the sprunge link automatically in your default
     browser. Disabled by default. >
         let g:sprunge_open_browser = 0
 <
 
 g:sprunge_flush_left                                 *SprungeConfig-flush-left*
-    Use this option to aligned along the left margin before pasting. Disabled
+    Left align
+
+    Use this option to align along the left margin before pasting. Disabled
     by default. >
         let g:sprunge_flush_left = 0
 <
 
 g:sprunge_map                                              *SprungeConfig-map*
+    Default mapping
+
     Use this option to configure the default mapping >
         let g:sprunge_map = '<Leader>s'
 <
@@ -125,6 +139,11 @@ GitHub: http://github.com/chilicuil/sprunge-vim/
 ==============================================================================
 CHANGELOG                                                    *SprungeChangelog*
 
+v0.0.6
+    * Add the option to align to the left before pasting, enabled by
+      g:sprunge_flush_left
+    * Add the notion of multiple providers, enabled by g:sprunge_providers
+    * Add new provider http://ix.io
 v0.0.5
     * Add xsel to the default clipboard app list
     * Add g:sprunge_cmd

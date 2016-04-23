@@ -17,10 +17,6 @@ if v:version < '700'
   finish
 endif
 
-if executable('curl') && !exists('g:sprunge_cmd')
-    let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
-endif
-
 " Default configuration {{{1
 if exists('g:sprunge_clipboard')
   let g:sprunge_clipboard = g:sprunge_clipboard =~? 'none\|vim\|external\|all' ? tolower(g:sprunge_clipboard) : 'all'
@@ -28,11 +24,12 @@ else
   let g:sprunge_clipboard = 'all'
 endif
 
-if !exists('g:sprunge_open_browser') | let g:sprunge_open_browser = 0 | endif
-if !exists('g:sprunge_map') | let g:sprunge_map = '<Leader>s' | endif
+if !exists('g:sprunge_providers')    | let g:sprunge_providers = 'sprunge,ix' | endif
+if !exists('g:sprunge_open_browser') | let g:sprunge_open_browser = 0         | endif
+if !exists('g:sprunge_map')          | let g:sprunge_map = '<Leader>s'        | endif
 
 " Commands & Mappings {{{1
-command! -nargs=0 -range=% Sprunge call sprunge#Post(<line1>,<line2>)
+command! -nargs=0 -range=% Sprunge call sprunge#Sprunge(<line1>,<line2>)
 
 if !hasmapto('<Plug>Sprunge')
     try
