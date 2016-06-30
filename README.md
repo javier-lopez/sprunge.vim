@@ -52,8 +52,3 @@ Usage
 it in visual mode to sprunge only the selection.
 
 See <kbd>:h sprunge.txt</kbd> for more help.
-
-License
--------
-
-WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
