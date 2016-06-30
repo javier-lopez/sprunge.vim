@@ -6,11 +6,10 @@ CONTENTS                                                     *Sprunge-contents*
     1. Intro ........................... |SprungeIntroIntro|
     2. Usage ........................... |SprungeUsage|
     3. Configuration ................... |SprungeConfig|
-    4. License ......................... |SprungeLicense|
-    5. Bugs ............................ |SprungeBugs|
-    6. Contributing .................... |SprungeContributing|
-    7. Changelog ....................... |SprungeChangelog|
-    8. Credits ......................... |SprungeCredits|
+    4. Bugs ............................ |SprungeBugs|
+    5. Contributing .................... |SprungeContributing|
+    6. Changelog ....................... |SprungeChangelog|
+    7. Credits ......................... |SprungeCredits|
 
 ==============================================================================
 INTRO                                                            *SprungeIntro*
@@ -115,10 +114,6 @@ g:sprunge_map                                              *SprungeConfig-map*
 <
     NOTE: The mapping is available in normal mode to sprunge the entire buffer
     and visual mode to sprunge only the visual selection.
-==============================================================================
-LICENSE                                                        *SprungeLicense*
-
-WTFPL, Do What the Fuck You Want to Public License. - http://www.wtfpl.net/
 
 ==============================================================================
 BUGS                                                              *SprungeBugs*
