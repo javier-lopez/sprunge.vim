@@ -103,6 +103,14 @@ g:sprunge_flush_left                                 *SprungeConfig-flush-left*
         let g:sprunge_flush_left = 0
 <
 
+g:sprunge_tabs2spaces                              *SprungeConfig-tabs2spaces*
+    Tabs2spaces
+
+    Use this option to convert tabs to spaces before pasting, useful to normalize
+    the output snippet. Warning: Slow. Disabled by default. >
+        let g:sprunge_tabs2spaces = 0
+<
+
 g:sprunge_map                                              *SprungeConfig-map*
     Default mapping
 
@@ -135,10 +143,12 @@ GitHub: http://github.com/chilicuil/sprunge-vim/
 CHANGELOG                                                    *SprungeChangelog*
 
 v0.0.6
-    * Add the option to align to the left before pasting, enabled by
+    * Add option g:sprunge_tabs2spaces to replace tabs with spaces
+      before aligning to left, WARNING: slow
+    * Add option to align to the left before pasting, enabled by
       g:sprunge_flush_left
-    * Add the notion of multiple providers, enabled by g:sprunge_providers
     * Add new provider http://ix.io
+    * Add notion of multiple providers, enabled by g:sprunge_providers
 v0.0.5
     * Add xsel to the default clipboard app list
     * Add g:sprunge_cmd

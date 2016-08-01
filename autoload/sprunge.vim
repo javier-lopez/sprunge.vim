@@ -2,7 +2,6 @@
 " File:        sprunge.vim
 " Description: vim global plugin to paste to http://sprunge.us/
 " Maintainer:  Javier Lopez <m@javier.io>
-" License:     WTFPL
 " ============================================================================
 
 function! sprunge#CopyToClipboard(clip) "{{{
@@ -28,24 +27,63 @@ function! sprunge#CopyToClipboard(clip) "{{{
   endif
 endfunction
 
-function! sprunge#FlushLeft(line1, line2) "{{{
-  let l:current_line     = a:line1
-  let l:min_white_spaces = 9999
-  while l:current_line <= a:line2
-      if getline(l:current_line) =~# '^$'
-          let l:current_line = l:current_line + 1
-          continue
-      else
-          let l:white_spaces = indent(l:current_line)
-          let l:current_line = l:current_line + 1
-          if l:white_spaces < l:min_white_spaces
-             let l:min_white_spaces = l:white_spaces
-          endif
-      endif
-  endw
-  let l:buffer = '' | for line in getline(a:line1, a:line2)
-      let l:buffer .= strpart(line, l:min_white_spaces) . "\n"
+function! sprunge#Tabs2Spaces(line1, line2) "{{{
+  let l:spaces_per_tab = repeat(' ', &softtabstop)
+  let l:buffer = '' | for l:line in getline(a:line1, a:line2)
+      let l:line = substitute(l:line, l:spaces_per_tab, '\t', 'g')
+      let l:line = substitute(l:line, ' \+\ze\t', '', 'g')
+      let l:buffer .= substitute(l:line, '\t', l:spaces_per_tab, 'g') . "\n"
   endfor
+  return l:buffer
+endfunction
+
+function! sprunge#CountLeadingWhiteSpaces(line) "{{{
+    let l:len = strlen(a:line) - 1
+    let l:white_spaces_counter = 0
+    while l:white_spaces_counter <= l:len
+        let l:char = strpart(a:line, l:white_spaces_counter, 1)
+        if l:char == " "
+            let l:white_spaces_counter += 1
+        else
+            return l:white_spaces_counter
+        endif
+    endwhile
+    return 0
+endfunction
+
+function! sprunge#FlushLeft(line1, line2) "{{{
+let l:min_white_spaces = 9999
+  if !exists('g:sprunge_tabs2spaces')
+      let l:current_line    = a:line1
+      while l:current_line <= a:line2
+          if getline(l:current_line) =~# '^$'
+              let l:current_line = l:current_line + 1
+              continue
+          else
+              let l:white_spaces = indent(l:current_line)
+              let l:current_line = l:current_line + 1
+              if l:white_spaces < l:min_white_spaces
+                 let l:min_white_spaces = l:white_spaces
+              endif
+          endif
+      endw
+      let l:buffer = '' | for line in getline(a:line1, a:line2)
+          let l:buffer .= strpart(line, l:min_white_spaces) . "\n"
+      endfor
+  else
+      let l:buffer = sprunge#Tabs2Spaces(a:line1, a:line2)
+      for l:current_line in split(l:buffer, '\n')
+          if l:current_line =~# '^$'
+              continue
+          else
+              let l:white_spaces = sprunge#CountLeadingWhiteSpaces(l:current_line)
+              if l:white_spaces < l:min_white_spaces
+                 let l:min_white_spaces = l:white_spaces
+              endif
+          endif
+      endfor
+  endif
+
   return l:buffer
 endfunction
 
