@@ -1,4 +1,4 @@
-[Sprunge.vim](https://github.com/chilicuil/vim-sprunge) is a global plugin to post to [Sprunge](http://sprunge.us/)
+[Sprunge.vim](https://github.com/chilicuil/sprunge.vim) is a global plugin to post to [Sprunge](http://sprunge.us/)
 
 Preview
 -------
@@ -18,7 +18,7 @@ Installation
 
 - [Vundle](https://github.com/gmarik/vundle) way (recommended), add the following to your $HOME/.vimrc file:
 
-        Bundle 'chilicuil/vim-sprunge'
+        Bundle 'chilicuil/sprunge.vim'
 
     And run inside of vim:
 
@@ -26,7 +26,7 @@ Installation
 
 - [NeoBundle](https://github.com/Shougo/neobundle.vim) way:
 
-        NeoBundle 'chilicuil/vim-sprunge'
+        NeoBundle 'chilicuil/sprunge.vim'
 
     And run inside of vim:
 
@@ -34,12 +34,12 @@ Installation
 
 - [Pathogen](https://github.com/tpope/vim-pathogen) way:
 
-        $ git clone https://github.com/chilicuil/vim-sprunge.git ~/.vim/bundle/vim-sprunge
+        $ git clone https://github.com/chilicuil/sprunge.vim.git ~/.vim/bundle/sprunge.vim
 
 - **Manual** (simplest if you've never heard of vundle or pathogen), download the zip file generated from github and extract it to $HOME/.vim
 
-        mv vim-sprunge*.zip $HOME/.vim
-        cd $HOME/.vim && unzip vim-sprunge*.zip
+        mv sprunge.vim*.zip $HOME/.vim
+        cd $HOME/.vim && unzip sprunge.vim*.zip
 
     Update the help tags from vim:
 
