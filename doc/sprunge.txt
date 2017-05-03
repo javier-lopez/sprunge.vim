@@ -1,7 +1,7 @@
 *sprunge.txt*   Vim global plugin to paste to http://sprunge.us/
 
 ==============================================================================
-CONTENTS                                                     *Sprunge-contents*
+CONTENTS                                                      *Sprunge-contents*
 
     1. Intro ........................... |SprungeIntroIntro|
     2. Usage ........................... |SprungeUsage|
@@ -12,7 +12,7 @@ CONTENTS                                                     *Sprunge-contents*
     7. Credits ......................... |SprungeCredits|
 
 ==============================================================================
-INTRO                                                            *SprungeIntro*
+INTRO                                                             *SprungeIntro*
 
 Sprunge.us is a suckless pastebin service, unless others you're able to
 upload|retrieve content without a web browser.
@@ -31,7 +31,7 @@ Retrieve
 Simple!
 
 ==============================================================================
-USAGE                                                           *SprungeUsage*
+USAGE                                                             *SprungeUsage*
 
     :Sprunge
 
@@ -45,7 +45,7 @@ Wondering how to make sprunge.us to colorize your paste?, go to
 |SprungeContributing|.
 
 ==============================================================================
-CONFIGURATION                                                   *SprungeConfig*
+CONFIGURATION                                                    *SprungeConfig*
 
 These options should be set in your .vimrc file.
 
@@ -87,7 +87,7 @@ g:sprunge_clipboard_cmd                            *SprungeConfig-clipboard-cmd*
         let g:sprunge_clipboard_cmd = 'clipboard_app --option'
 <
 
-g:sprunge_open_browser                             *SprungeConfig-open-browser*
+g:sprunge_open_browser                              *SprungeConfig-open-browser*
     Browser trigger
 
     Use this option to open the sprunge link automatically in your default
@@ -95,23 +95,23 @@ g:sprunge_open_browser                             *SprungeConfig-open-browser*
         let g:sprunge_open_browser = 0
 <
 
-g:sprunge_flush_left                                 *SprungeConfig-flush-left*
+g:sprunge_flush_left                                  *SprungeConfig-flush-left*
     Left align
 
-    Use this option to align along the left margin before pasting. Disabled
-    by default. >
+    Use this option to align along the left margin before pasting.
+    Warning: Slow. Disabled by default. >
         let g:sprunge_flush_left = 0
 <
 
-g:sprunge_tabs2spaces                              *SprungeConfig-tabs2spaces*
+g:sprunge_tabs2spaces                                *SprungeConfig-tabs2spaces*
     Tabs2spaces
 
-    Use this option to convert tabs to spaces before pasting, useful to normalize
-    data. Warning: Slow. Disabled by default. >
+    Use this option to convert tabs to spaces before pasting, useful to
+    normalize data. Warning: Slow. Disabled by default. >
         let g:sprunge_tabs2spaces = 0
 <
 
-g:sprunge_map                                              *SprungeConfig-map*
+g:sprunge_map                                                *SprungeConfig-map*
     Default mapping
 
     Use this option to configure the default mapping: >
@@ -132,14 +132,14 @@ g:sprunge_map                                              *SprungeConfig-map*
           selected area on visual mode.
 
 ==============================================================================
-BUGS                                                              *SprungeBugs*
+BUGS                                                               *SprungeBugs*
 
 If you find a bug please post it on the issue tracker:
 
     https://github.com/chilicuil/sprunge.vim/issues
 
 ==============================================================================
-CONTRIBUTING                                              *SprungeContributing*
+CONTRIBUTING                                               *SprungeContributing*
 
 I created this plugin while waiting for a meeting, it does what I need, if you
 need something else the best way to get it is to send a patch, fork it and send
@@ -148,7 +148,7 @@ your pull request =)
 GitHub: http://github.com/chilicuil/sprunge.vim
 
 ==============================================================================
-CHANGELOG                                                    *SprungeChangelog*
+CHANGELOG                                                     *SprungeChangelog*
 
 v0.0.6
     * Add option g:sprunge_tabs2spaces to replace tabs with spaces
@@ -157,6 +157,7 @@ v0.0.6
       g:sprunge_flush_left
     * Add new provider http://ix.io
     * Add notion of multiple providers, enabled by g:sprunge_providers
+    * Add g:sprunge_browser to specify in which browser auto-open
 v0.0.5
     * Add xsel to the default clipboard app list
     * Add g:sprunge_cmd
@@ -174,7 +175,7 @@ v0.0.1
     * Initial release.
 
 ==============================================================================
-CREDITS                                                        *SprungeCredits*
+CREDITS                                                         *SprungeCredits*
 
 The following people have contributed additional enhancements to the sprunge
 plugin, thanks!:
