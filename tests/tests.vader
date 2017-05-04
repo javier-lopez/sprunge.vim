@@ -1,0 +1,253 @@
+Execute(Test g:loaded_sprunge):
+  Assert exists("g:loaded_sprunge")
+
+Given(Lorem ipsum input (1 line)):
+  Duis bibendum neque nec justo tincidunt euismod.
+
+Execute(Sprunge the whole file to the default provider):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers = 'sprunge'
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+  Assert lastmsg =~# 'Done: http://sprunge.us/[A-Za-z]\{4}'
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = get(split(system('curl -s ' . url), "\n"), 0, "") | Log 'uploaded_content: ' . uploaded_content
+
+  AssertEqual 'Duis bibendum neque nec justo tincidunt euismod.', uploaded_content
+
+Execute(Sprunge the whole file to ix):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers = 'ix'
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+  Assert lastmsg =~# 'Done: http://ix.io/[A-Za-z]\{3}'
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = get(split(system('curl -s ' . url), "\n"), 0, "") | Log 'uploaded_content: ' . uploaded_content
+
+  AssertEqual 'Duis bibendum neque nec justo tincidunt euismod.', uploaded_content
+
+Execute(Sprunge the whole file to custom provider):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+  Assert lastmsg =~# 'Done: http://sprunge.us/[A-Za-z]\{4}'
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = get(split(system('curl -s ' . url), "\n"), 0, "") | Log 'uploaded_content: ' . uploaded_content
+
+  AssertEqual 'Duis bibendum neque nec justo tincidunt euismod.', uploaded_content
+
+Do(Verification of the clipboard 'none' option):
+  :call setreg('"', '')\<Enter>
+  :let g:sprunge_clipboard = 'none'\<Enter>
+  :Sprunge\<Enter>
+  o\<Esc>
+  p
+
+Expect(Lorem ipsum):
+  Duis bibendum neque nec justo tincidunt euismod.
+  
+
+Execute(Verification of the clipboard 'all' option):
+  let sleep_output = system('sleep 1')
+
+  call setreg('"', '')
+  let g:sprunge_clipboard = 'all'
+  let g:sprunge_cmd = 'curl -s -F "sprunge=<-" http://sprunge.us'
+
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  Log 'paste register: ' . getreg('"')
+  AssertEqual getreg('"'),  url
+
+Given(Lorem ipsum input (2 lines)):
+  Duis bibendum neque nec justo tincidunt euismod.
+  Et vestibulum semper et, diam nec wisi dapibus nec, magnis est urna eget proin dui sit.
+
+Execute(Sprunge 2nd line in visual mode):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers = 'ix'
+
+  redir => messages
+    2,2Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = get(split(system('curl -s ' . url), "\n"), 0, "") | Log 'uploaded_content: ' . uploaded_content
+
+  AssertEqual 'Et vestibulum semper et, diam nec wisi dapibus nec, magnis est urna eget proin dui sit.', uploaded_content
+
+#vader doesn't seems to update '>/'< (visual marks)
+#so in order to use checksum#GetVisualSelection
+#they're declared below, also, setpos() on #'>/'<
+#is only supported in vim >= 7.3.590, so the
+#following test fails in ubuntu precise and below.
+Execute(Sprunge 2 words in the 2nd line in visual mode):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers = 'ix'
+
+  let output = setpos("'<", [0,2,1,0])  | Log "setpos(['<], [0,2,1,0]) : " . output
+  let output = setpos("'>", [0,2,13,0]) | Log "setpos(['<], [0,2,13,0]): " . output
+
+  redir => messages
+    2,2Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = get(split(system('curl -s ' . url), "\n"), 0, "") | Log 'uploaded_content: ' . uploaded_content
+
+  AssertEqual 'Et vestibulum', uploaded_content
+
+#ends vim >= 7.3.590 test
+
+#Fix: Fork and verify browser pid exists
+#Execute(Sprunge with g:sprunge_open_browser option set):
+#  let sleep_output = system('sleep 1')
+#
+#  let g:sprunge_providers    = 'sprunge'
+#  let g:sprunge_open_browser = 1
+#
+#  redir => messages
+#    Sprunge
+#  redir END
+#
+#  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+#  Assert lastmsg =~# 'Done: http://sprunge.us/[A-Za-z]\{4}'
+#
+#  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+#  let uploaded_content = get(split(system('curl -s ' . url), "\n"), 0, "") | Log 'uploaded_content: ' . uploaded_content
+#
+#  Log '$BROWSER: ' . system('echo $BROWSER')
+#  let browser_pid = system('pgrep $BROWSER')   | Log 'browser_pid: ' . browser_pid
+
+Given(Lorem ipsum input with white spaces):
+    Duis bibendum
+      Et vestibulum
+
+Execute(Sprunge with g:sprunge_flush_left unset):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers  = 'sprunge'
+  let g:sprunge_flush_left = 0
+
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+  Assert lastmsg =~# 'Done: http://sprunge.us/[A-Za-z]\{4}'
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  unlet uploaded_content "we used strings till this point, now it'll hold a list
+  let uploaded_content = split(system('curl -s ' . url), "\n") | Log 'uploaded_content: ' . join(uploaded_content, "\n")
+
+  AssertEqual '  Duis bibendum',    get(uploaded_content, 0, "")
+  AssertEqual '    Et vestibulum',  get(uploaded_content, 1, "")
+
+Execute(Sprunge with g:sprunge_flush_left set):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers  = 'sprunge'
+  let g:sprunge_flush_left = 1
+
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+  Assert lastmsg =~# 'Done: http://sprunge.us/[A-Za-z]\{4}'
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = split(system('curl -s ' . url), "\n") | Log 'uploaded_content: ' . join(uploaded_content, "\n")
+
+  AssertEqual 'Duis bibendum',   get(uploaded_content, 0, "")
+  AssertEqual '  Et vestibulum', get(uploaded_content, 1, "")
+
+Given(Lorem ipsum input with white spaces + tabs):
+    Duis bibendum
+    	Et vestibulum
+
+Execute(Sprunge with g:sprunge_tabs2spaces unset):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers   = 'ix'
+  let g:sprunge_tabs2spaces = 0
+  let g:sprunge_flush_left  = 0
+  set softtabstop=2
+
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = split(system('curl -s ' . url), "\n") | Log 'uploaded_content: ' . join(uploaded_content, "\n")
+
+  AssertEqual '  Duis bibendum',    get(uploaded_content, 0, "")
+  AssertEqual '  	Et vestibulum', get(uploaded_content, 1, "")
+
+Execute(Sprunge with g:sprunge_tabs2spaces set):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers   = 'sprunge'
+  let g:sprunge_tabs2spaces = 1
+  let g:sprunge_flush_left  = 0
+  set softtabstop=2
+
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = split(system('curl -s ' . url), "\n") | Log 'uploaded_content: ' . join(uploaded_content, "\n")
+
+  AssertEqual '  Duis bibendum',   get(uploaded_content, 0, "")
+  AssertEqual '    Et vestibulum', get(uploaded_content, 1, "")
+
+Execute(Sprunge with g:sprunge_tabs2spaces + g:sprunge_flush_left set):
+  let sleep_output = system('sleep 1')
+
+  let g:sprunge_providers   = 'ix'
+  let g:sprunge_tabs2spaces = 1
+  let g:sprunge_flush_left  = 1
+  set softtabstop=2
+
+  redir => messages
+    Sprunge
+  redir END
+
+  let lastmsg = get(split(messages, "\n"), -1, "") | Log 'lastmsg: ' . lastmsg
+
+  let url = get(split(lastmsg, " "), -1, "")   | Log 'url: ' . url
+  let uploaded_content = split(system('curl -s ' . url), "\n") | Log 'uploaded_content: ' . join(uploaded_content, "\n")
+
+  AssertEqual 'Duis bibendum',   get(uploaded_content, 0, "")
+  AssertEqual '  Et vestibulum', get(uploaded_content, 1, "")

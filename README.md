@@ -1,6 +1,8 @@
 About
 -----
 
+[![Build Status](https://travis-ci.org/chilicuil/sprunge.vim.png?branch=master)](https://travis-ci.org/chilicuil/sprunge.vim)
+
 [Sprunge.vim](https://github.com/chilicuil/sprunge.vim) is a global plugin to post to [Sprunge](http://sprunge.us/)
 
 <p align="center">
