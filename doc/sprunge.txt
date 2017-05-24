@@ -136,7 +136,7 @@ BUGS                                                               *SprungeBugs*
 
 If you find a bug please post it on the issue tracker:
 
-    https://github.com/chilicuil/sprunge.vim/issues
+    https://github.com/javier-lopez/sprunge.vim/issues
 
 ==============================================================================
 CONTRIBUTING                                               *SprungeContributing*
@@ -145,7 +145,7 @@ I created this plugin while waiting for a meeting, it does what I need, if you
 need something else the best way to get it is to send a patch, fork it and send
 your pull request =)
 
-GitHub: http://github.com/chilicuil/sprunge.vim
+GitHub: http://github.com/javier-lopez/sprunge.vim
 
 ==============================================================================
 CHANGELOG                                                     *SprungeChangelog*
